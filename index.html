@@ -54,7 +54,7 @@
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            z-index: 1003; /* najwyższy, nad overlay/panelem */
+            z-index: 1004; /* najwyższy, nad overlay/panelem */
         }
 
         .menu-icon span {
@@ -87,9 +87,8 @@
             box-shadow: -5px 0 20px rgba(0,0,0,0.1);
             transition: right 0.3s ease;
             padding-top: 80px;
-            z-index: 1001;
+            z-index: 1003; /* → dajemy wyżej (ponad overlay) */
         }
-
         .mobile-menu.active {
             right: 0;
         }
