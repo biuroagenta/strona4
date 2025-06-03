@@ -718,25 +718,36 @@
     </section>
 
     <script>
-        function toggleMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuOverlay = document.querySelector('.menu-overlay');
-            
-            menuIcon.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-        }
 
-        function closeMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuOverlay = document.querySelector('.menu-overlay');
-            
-            menuIcon.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        }
+
+        
+function toggleMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    
+    // Toggle tylko menu, bez zmiany overlay
+    menuIcon.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    
+    // Toggle overlay tylko jeśli menu jest aktywne
+    if (mobileMenu.classList.contains('active')) {
+        menuOverlay.classList.add('active');
+    } else {
+        menuOverlay.classList.remove('active');
+    }
+}
+
+function closeMenu() {
+    const menuIcon = document.querySelector('.menu-icon');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    
+    menuIcon.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+}
+        
 
         function showSection(sectionId) {
             // Hide all sections
@@ -766,16 +777,18 @@
         }
 
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuIcon = document.querySelector('.menu-icon');
-            
-            if (!mobileMenu.contains(event.target) && !menuIcon.contains(event.target)) {
-                if (mobileMenu.classList.contains('active')) {
-                    closeMenu();
-                }
-            }
-        });
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    
+    // Jeśli kliknięto poza menu i ikoną, gdy menu jest aktywne
+    if (!mobileMenu.contains(event.target) && 
+        !menuIcon.contains(event.target) &&
+        mobileMenu.classList.contains('active')) {
+        closeMenu();
+    }
+});
 
         function protectEmail() {
             const emailElement = document.getElementById('protectedEmail');
