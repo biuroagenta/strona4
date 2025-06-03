@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth; /* Dodaj płynne przewijanie */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -29,9 +29,7 @@
             background: white;
             padding: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: relative;
         }
 
         .header-content {
@@ -191,11 +189,33 @@
             transform: translateY(-50%);
             width: 50%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="%23e0e6ed"/><circle cx="150" cy="120" r="40" fill="%23a0aec0"/><rect x="110" y="160" width="80" height="100" rx="10" fill="%234a5568"/><circle cx="280" cy="140" r="35" fill="%23a0aec0"/><rect x="245" y="175" width="70" height="90" rx="10" fill="%232d3748"/></svg>') no-repeat center;
+            background: url('a.jpg') no-repeat center;
             background-size: contain;
         }
 
-        /* Features Section */
+        /* Section Display Control */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Features Section - make it standalone */
+        .features-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .features-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        /* Features Grid */
         .features {
             display: grid;
             grid-template-columns: 1fr;
@@ -371,6 +391,50 @@
             line-height: 1.6;
         }
 
+        /* Communication Section */
+        .communication {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: #f8f9fa;
+        }
+
+        .comm-text {
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .comm-text h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .comm-text p {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .btn-teal {
+            background: #4ecdc4;
+            color: white;
+            align-self: flex-start;
+            margin-top: 20px;
+        }
+
+        .btn-teal:hover {
+            background: #45b7d1;
+        }
+
+        .comm-image {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23e2e8f0"/><circle cx="150" cy="100" r="30" fill="%23a0aec0"/><circle cx="280" cy="120" r="35" fill="%23a0aec0"/><rect x="120" y="130" width="60" height="80" rx="8" fill="%234a5568"/><rect x="250" y="155" width="70" height="90" rx="8" fill="%232d3748"/><rect x="50" y="50" width="300" height="200" rx="10" fill="%23cbd5e0" opacity="0.2"/></svg>') no-repeat center;
+            background-size: cover;
+            min-height: 400px;
+        }
+
         /* CTA Section */
         .cta {
             background: #4ecdc4;
@@ -387,6 +451,40 @@
         .cta p {
             margin-bottom: 30px;
             opacity: 0.9;
+        }
+
+        /* Marketing Section */
+        .marketing {
+            padding: 80px 0;
+            text-align: center;
+            background: white;
+        }
+
+        .marketing h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .marketing p {
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .marketing .btn {
+            background: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        footer p {
+            opacity: 0.8;
         }
 
         /* Responsive Design */
@@ -418,6 +516,10 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 60px;
             }
+
+            .communication {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -431,7 +533,7 @@
         }
 
         /* Animations */
-        .hero, .about, .services {
+        .hero, .about, .services, .marketing {
             animation: fadeIn 1s ease-in;
         }
 
@@ -447,7 +549,6 @@
         .feature-card:hover, .service-card:hover {
             transform: translateY(-5px);
         }
-        
     </style>
 </head>
 <body>
@@ -469,10 +570,10 @@
     <div class="menu-overlay" onclick="closeMenu()"></div>
     <nav class="mobile-menu">
         <ul>
-            <li><a href="#home" onclick="closeMenu()">Start</a></li>
-            <li><a href="#about" onclick="closeMenu()">O nas</a></li>
-            <li><a href="#services" onclick="closeMenu()">Usługi</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Kontakt</a></li>
+            <li><a href="#home" onclick="showSection('home')" class="active">Start</a></li>
+            <li><a href="#about" onclick="showSection('about')">O nas</a></li>
+            <li><a href="#services" onclick="showSection('services')">Usługi</a></li>
+            <li><a href="#contact" onclick="showSection('about')">Kontakt</a></li>
         </ul>
     </nav>
 
@@ -481,9 +582,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <p></p>
                     <h1>Pomagamy Ci organizować Twój biznes</h1>
-                    <p>Oferujemy kompleksowe usługi finansowe i administracyjne, które wspierają rozwój Twojej Firmy, zapewniają bezpieczeństwo operacyjne oraz optymalizują procesy biznesowe.</p>
+                    <p>Oferujemy kompleksowe usługi finansowe i administracyne, które wspierają rozwój Twojej Firmy, zapewniają bezpieczeństwo operacyjne oraz optymalizują procesy biznesowe.</p>
                     <a href="#about" class="btn">Dowiedz się więcej</a>
                 </div>
                 <div class="hero-image"></div>
@@ -509,7 +609,6 @@
 
     <!-- About Section -->
     <section class="about" id="about">
-        <p></p>
         <div class="container">
             <div class="about-icon"></div>
             <h2>O nas</h2>
@@ -532,7 +631,6 @@
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <p></p>
         <div class="container">
             <h2>Nasze usługi</h2>
             <p class="services-subtitle"></p>
@@ -590,7 +688,6 @@
 
     <!-- CTA Section -->
     <section class="cta" id="contact">
-        <p></p>
         <div class="container">
             <h2>Kontakt</h2>
             <p>biuropartnera@gmail.com</p>
@@ -618,6 +715,33 @@
             menuIcon.classList.remove('active');
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // Update active menu item
+            const menuLinks = document.querySelectorAll('.mobile-menu a');
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Close menu after selection
+            closeMenu();
+
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
 
         // Close menu when clicking outside
