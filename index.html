@@ -329,13 +329,33 @@
         }
 
         .content-image {
-            position: relative; /* Zmiana z absolute na relative */
-            width: 100%; /* Pełna szerokość na mobilce */
-            height: 300px; /* Stała wysokość */
+            position: relative;          /* pozostało tak jak było */
+            width: 100%;                 /* zajmuje całą szerokość komórki */
+            /* usuń: height: 300px; */   /* -> usuwamy „sztywne” 300px */
             background: url('b.jpg') no-repeat center;
-            background-size: contain;
-            margin-top: 20px; /* Odstęp od tekstu */
+            background-size: cover;      /* zamiast contain, żeby wypełnić cały kontener */
+            margin-top: 20px;            /* można zostawić margines na mobile */
         }
+        @media (min-width: 768px) {
+    .content-image {
+        margin-top: 0;          /* usuń odstęp od tekstu na większym ekranie */
+        height: 100%;           /* rozciąga się na pełną wysokość wiersza grid */
+    }
+}
+
+/* --- NA DUŻYCH EKRANACH (>=1024px) --- */
+    @media (min-width: 1024px) {
+    /* Jeśli chcesz, możesz doprecyzować:
+       grid już ma dwie kolumny, więc .content-image będzie
+       samoistnie miało 50% szerokości rodzica.
+       Upewnijmy się tylko, że rodzic .content-section jest wysokim kontenerem. */
+    .content-section {
+        min-height: 600px;     /* tak, jak wcześniej – wymusza wysokość wiersza */
+    }
+    .content-image {
+        height: 100%;          /* będzie miało tyle samo, co min-height sekcji */
+    }
+}
 
         /* Services Section */
         .services {
