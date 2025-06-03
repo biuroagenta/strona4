@@ -24,12 +24,14 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header - STICKY */
         header {
             background: white;
             padding: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: relative;
+            position: sticky; /* Dodane sticky */
+            top: 0;
+            z-index: 1000; /* Wyższy z-index niż inne elementy */
         }
 
         .header-content {
@@ -135,7 +137,7 @@
             visibility: visible;
         }
 
-        /* Hero Section */
+        /* Hero Section - POPRAWA DLA MOBILNEJ WERSJI */
         .hero {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 80px 0;
@@ -183,14 +185,12 @@
         }
 
         .hero-image {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50%;
-            height: 100%;
+            position: relative; /* Zmiana z absolute na relative */
+            width: 100%; /* Pełna szerokość na mobilce */
+            height: 300px; /* Stała wysokość */
             background: url('a.jpg') no-repeat center;
             background-size: contain;
+            margin-top: 20px; /* Odstęp od tekstu */
         }
 
         /* Section Display Control */
@@ -502,6 +502,7 @@
                 position: relative;
                 width: 100%;
                 height: 400px;
+                margin-top: 0; /* Reset dla desktopa */
             }
 
             .features {
@@ -529,6 +530,16 @@
 
             .hero-text h1 {
                 font-size: 3.5rem;
+            }
+
+            /* Dla dużych ekranów przywracamy oryginalne pozycjonowanie */
+            .hero-image {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50%;
+                height: 100%;
             }
         }
 
@@ -598,163 +609,3 @@
             <p>Nasza przewaga konkurencyjna to praktyczne doświadczenie, indywidualne podejście i skuteczność w działaniu.</p>
         </div>
         <div class="feature-card">
-            <h3>Kompetencje</h3>
-            <p>Wykształcenie w kierunku administracji publicznej - wiedza z zakresu prawa, ekonomii i zarządzania pozwala naszej firmie jeszcze lepiej prowadzić sprawy naszych klientów.</p>
-        </div>
-        <div class="feature-card">
-            <h3>20-letnie doświadczenie</h3>
-            <p>Praktyczna wiedza z zakresu bankowości, procedur kredytowych i zabezpieczeń przekłada się wprost na skuteczność w pozyskiwaniu finansowania. Nie uczymy się na Twojej Firmie.</p>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-icon"></div>
-            <h2>O nas</h2>
-            <p>Oparta na wieloletnim doświadczeniu w finansach i administracji firma oferuje rzetelne i skuteczne wsparcie dla mikro i małych przedsiębiorstw. Dzięki specjalistycznej wiedzy, klienci zyskują nie tylko pomoc w uzyskaniu kredytu, ale także kompleksową obsługę finansowo-administracyjną, która pozwala im skupić się na rozwoju biznesu, zamiast na biurokracji.</p>
-            <a href="#services" class="btn btn-outline">Nasze usługi</a>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="content-section">
-        <div class="content-text">
-            <h2>Dzielimy się doświadczeniem, byś mógł skupić się na rozwoju Twojej firmy</h2>
-            <p>Dzięki naszym usługom finansowym i administracyjnym możesz skoncentrować się na rozwoju biznesu, mając pewność, że sprawy formalne są w dobrych rękach.</p>
-            <p>Pozostaw nam sporządzanie wniosków, umów, sprawozdań i innych dokumentów. </p>
-            <p>Pomagamy w dostosowaniu firmy do zmieniających się przepisów i optymalizujemy administrację.</p>
-            <a href="#contact" class="btn btn-white">Kontakt</a>
-        </div>
-        <div class="content-image"></div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2>Nasze usługi</h2>
-            <p class="services-subtitle"></p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">D</div>
-                    <h3>Doradztwo kredytowe</h3>
-                    <p>Pomoc w wyborze najlepszych ofert kredytowych, przygotowanie dokumentacji oraz wsparcie w negocjacjach z bankami.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">O</div>
-                    <h3>Ocena zdolności kredytowej</h3>
-                    <p>Wstępna analiza sytuacji finansowej zwiększająca szanse na pozytywną decyzję banku.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">Z</div>
-                    <h3>Zabezpieczenia</h3>
-                    <p>Doradztwo w zakresie ustanawiania zabezpieczeń (poręczenia, weksle, zabezpieczenia rzeczowe).</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">P</div>
-                    <h3>Planowanie finansowe</h3>
-                    <p>Pomoc w optymalizacji kosztów firmy oraz długoterminowym zarządzaniu przepływami pieniężnymi</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">Z</div>
-                    <h3>Zarządzanie procesami</h3>
-                    <p>Dostosowanie firmy do zmieniających się przepisów i optymalizacja działań administracyjnych.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">S</div>
-                    <h3>Specjalizacja w mikro i małych firmach</h3>
-                    <p>Zrozumienie potrzeb pozwala na dopasowanie rozwiązań.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">Z</div>
-                    <h3>Zarządzanie dokumentacją</h3>
-                    <p>Organizacja i archiwizacja dokumentów. Wdrażanie systemów obiegu dokumentów.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">O</div>
-                    <h3>Obsługa biurowa</h3>
-                    <p>Prowadzenie korespondencji, organizacja spotkań, zarządzanie kalendarzem.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">S</div>
-                    <h3>Szkolenia i doradztwo</h3>
-                    <p>Organizacja szkoleń dla Twojej Firmy. Konsultacje indywidualne.</p>
-                </div>
-            </div>
-            <a href="#contact" class="btn btn-outline">Kontakt</a>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2>Kontakt</h2>
-            <p>biuropartnera@gmail.com</p>
-            <p>+48 577 812 477</p>
-            <a href="https://maps.app.goo.gl/4H7xJfWwLSy83hXUA" class="btn btn-white">Lokalizacja</a>
-        </div>
-    </section>
-
-    <script>
-        function toggleMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuOverlay = document.querySelector('.menu-overlay');
-            
-            menuIcon.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-        }
-
-        function closeMenu() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuOverlay = document.querySelector('.menu-overlay');
-            
-            menuIcon.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        }
-
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show selected section
-            const selectedSection = document.getElementById(sectionId);
-            if (selectedSection) {
-                selectedSection.classList.add('active');
-            }
-
-            // Update active menu item
-            const menuLinks = document.querySelectorAll('.mobile-menu a');
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Close menu after selection
-            closeMenu();
-
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuIcon = document.querySelector('.menu-icon');
-            
-            if (!mobileMenu.contains(event.target) && !menuIcon.contains(event.target)) {
-                if (mobileMenu.classList.contains('active')) {
-                    closeMenu();
-                }
-            }
-        });
-    </script>
-</body>
-</html>
