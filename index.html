@@ -793,23 +793,19 @@ document.addEventListener('click', function(event) {
     }
 });
 
-        function protectEmail() {
-            const emailElement = document.getElementById('protectedEmail');
-            if (emailElement) {
-                // Odwracamy ciąg znaków
-                const reversedEmail = emailElement.textContent;
-                const normalEmail = reversedEmail.split('').reverse().join('');
-                
-                // Aktualizujemy zawartość elementu
-                emailElement.innerHTML = `${normalEmail}`;
-                
-                // Dodajemy link mailto (opcjonalnie)
-                //emailElement.innerHTML = `<a href="mailto:${normalEmail}">${normalEmail}</a>`;
-            }
+function protectEmail() {
+        const emailElement = document.getElementById('protectedEmail');
+        if (emailElement) {
+            const reversedEmail = emailElement.textContent;
+            const normalEmail = reversedEmail.split('').reverse().join('');
+            emailElement.textContent = normalEmail;
+            // Jeśli chcesz link mailto, możesz odkomentować poniższą linię:
+            // emailElement.innerHTML = `<a href="mailto:${normalEmail}">${normalEmail}</a>`;
         }
+    }
 
-        // Wywołujemy funkcję po załadowaniu DOM
-        document.addEventListener('DOMContentLoaded', protectEmail);
+    // Wywołaj od razu – skrypt ładuje się na końcu <body>
+    protectEmail();
         
         
     </script>
