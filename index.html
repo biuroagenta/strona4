@@ -781,6 +781,7 @@
             const reversedEmail = emailElement.textContent;
             const normalEmail = reversedEmail.split('').reverse().join('');
             emailElement.textContent = normalEmail;
+            emailElement.classList.remove('protected-email'); 
             // Jeśli chcesz link mailto, możesz odkomentować poniższą linię:
             // emailElement.innerHTML = `<a href="mailto:${normalEmail}">${normalEmail}</a>`;
         }
