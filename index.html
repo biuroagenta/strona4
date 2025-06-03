@@ -563,6 +563,11 @@
         .feature-card:hover, .service-card:hover {
             transform: translateY(-5px);
         }
+
+        .protected-email {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+        }
     </style>
 </head>
 <body>
@@ -700,15 +705,19 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
+<section class="cta" id="contact">
         <div class="container">
             <h2>Kontakt</h2>
-            <p>biuropartnera@gmail.com</p>
+            <!-- Zmieniamy sposób wyświetlania emaila -->
+            <p>
+                <span id="protectedEmail" class="protected-email">moc.liamg@anretraporuib</span>
+            </p>
             <p>+48 577 812 477</p>
             <a href="https://maps.app.goo.gl/4H7xJfWwLSy83hXUA" class="btn btn-white">Lokalizacja</a>
         </div>
     </section>
+
+    <script>
 
     <script>
         function toggleMenu() {
@@ -769,6 +778,25 @@
                 }
             }
         });
+
+        function protectEmail() {
+            const emailElement = document.getElementById('protectedEmail');
+            if (emailElement) {
+                // Odwracamy ciąg znaków
+                const reversedEmail = emailElement.textContent;
+                const normalEmail = reversedEmail.split('').reverse().join('');
+                
+                // Aktualizujemy zawartość elementu
+                emailElement.textContent = normalEmail;
+                
+                // Dodajemy link mailto (opcjonalnie)
+                emailElement.innerHTML = `<a href="mailto:${normalEmail}">${normalEmail}</a>`;
+            }
+        }
+
+        // Wywołujemy funkcję po załadowaniu DOM
+        document.addEventListener('DOMContentLoaded', protectEmail);
+        
     </script>
 </body>
 </html>
