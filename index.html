@@ -47,15 +47,14 @@
         }
 
         .menu-icon {
-            z-index: 1003;
+            position: relative;
             width: 30px;
             height: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            z-index: 1001;
-            position: relative;
+            z-index: 1003; /* najwyższy, nad overlay/panelem */
         }
 
         .menu-icon span {
@@ -79,7 +78,6 @@
 
         /* Mobile Menu */
         .mobile-menu {
-            z-index: 1002;
             position: fixed;
             top: 0;
             right: -100%;
@@ -87,9 +85,9 @@
             height: 100vh;
             background: white;
             box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-            z-index: 1000;
             transition: right 0.3s ease;
             padding-top: 80px;
+            z-index: 1001;
         }
 
         .mobile-menu.active {
@@ -122,17 +120,16 @@
         }
 
         .menu-overlay {
-            z-index: 1001;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 999;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
+            z-index: 1002;
         }
 
         .menu-overlay.active {
