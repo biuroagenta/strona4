@@ -722,78 +722,60 @@
 
     <script>
 
-
+    function toggleMenu() {
+        const menuIcon = document.querySelector('.menu-icon');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
         
-function toggleMenu() {
-    const menuIcon = document.querySelector('.menu-icon');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    
-    // Toggle tylko menu, bez zmiany overlay
-    menuIcon.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    
-    // Toggle overlay tylko jeśli menu jest aktywne
-    if (mobileMenu.classList.contains('active')) {
-        menuOverlay.classList.add('active');
-    } else {
+        menuIcon.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        
+        if (mobileMenu.classList.contains('active')) {
+            menuOverlay.classList.add('active');
+        } else {
+            menuOverlay.classList.remove('active');
+        }
+    }
+
+    function closeMenu() {
+        const menuIcon = document.querySelector('.menu-icon');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        menuIcon.classList.remove('active');
+        mobileMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
     }
-}
 
-function closeMenu() {
-    const menuIcon = document.querySelector('.menu-icon');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    
-    menuIcon.classList.remove('active');
-    mobileMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
-}
-        
+    function showSection(sectionId, clickedLink) {
+        // Ukrywamy wszystkie sekcje
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
 
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show selected section
-            const selectedSection = document.getElementById(sectionId);
-            if (selectedSection) {
-                selectedSection.classList.add('active');
-            }
-
-            // Update active menu item
-            const menuLinks = document.querySelectorAll('.mobile-menu a');
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Close menu after selection
-            closeMenu();
-
-            // Scroll to top
-            window.scrollTo(0, 0);
+        // Pokaż wybraną sekcję
+        const selectedSection = document.getElementById(sectionId);
+        if (selectedSection) {
+            selectedSection.classList.add('active');
         }
 
-        // Close menu when clicking outside
-document.addEventListener('click', function(event) {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const menuIcon = document.querySelector('.menu-icon');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    
-    // Jeśli kliknięto poza menu i ikoną, gdy menu jest aktywne
-    if (!mobileMenu.contains(event.target) && 
-        !menuIcon.contains(event.target) &&
-        mobileMenu.classList.contains('active')) {
-        closeMenu();
-    }
-});
+        // Zaktualizuj klasę active w menu
+        const menuLinks = document.querySelectorAll('.mobile-menu a');
+        menuLinks.forEach(link => link.classList.remove('active'));
+        if (clickedLink) {
+            clickedLink.classList.add('active');
+        }
 
-function protectEmail() {
+        // Zamknij menu
+        closeMenu();
+
+        // Przewiń na górę
+        window.scrollTo(0, 0);
+    }
+
+    // Funkcja odsłaniająca email
+    function protectEmail() {
         const emailElement = document.getElementById('protectedEmail');
         if (emailElement) {
             const reversedEmail = emailElement.textContent;
@@ -806,7 +788,20 @@ function protectEmail() {
 
     // Wywołaj od razu – skrypt ładuje się na końcu <body>
     protectEmail();
+
+    // Zamknięcie menu po kliknięciu poza nim
+    document.addEventListener('click', function(event) {
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuIcon = document.querySelector('.menu-icon');
         
+        if (
+            mobileMenu.classList.contains('active') &&
+            !mobileMenu.contains(event.target) &&
+            !menuIcon.contains(event.target)
+        ) {
+            closeMenu();
+        }
+    });
         
     </script>
 </body>
