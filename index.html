@@ -330,12 +330,12 @@
         }
 
         .content-image {
-            position: relative; /* Zmiana z absolute na relative */
-            width: 100%; /* Pełna szerokość na mobilce */
-            height: 300px; /* Stała wysokość */
+            position: relative;
+            width: 100%;
+            height: 300px;
             background: url('b.jpg') no-repeat center;
             background-size: contain;
-            margin-top: 20px; /* Odstęp od tekstu */
+            margin-top: 20px;
         }
 
         /* Services Section */
@@ -505,7 +505,7 @@
                 position: relative;
                 width: 100%;
                 height: 400px;
-                margin-top: 0; /* Reset dla desktopa */
+                margin-top: 0;
             }
 
             .features {
@@ -543,6 +543,17 @@
                 transform: translateY(-50%);
                 width: 50%;
                 height: 100%;
+            }
+            
+            /* FIX: Add the same styling for content-image as hero-image */
+            .content-image {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 50%;
+                height: 100%;
+                background-size: cover;
+                margin-top: 0;
             }
         }
 
@@ -589,10 +600,10 @@
     <div class="menu-overlay" onclick="closeMenu()"></div>
     <nav class="mobile-menu">
         <ul>
-            <li><a href="#home" onclick="showSection('home')" class="active">Start</a></li>
-            <li><a href="#about" onclick="showSection('about')">O nas</a></li>
-            <li><a href="#services" onclick="showSection('services')">Usługi</a></li>
-            <li><a href="#contact" onclick="showSection('about')">Kontakt</a></li>
+            <li><a href="#home" onclick="showSection(event, 'home')" class="active">Start</a></li>
+            <li><a href="#about" onclick="showSection(event, 'about')">O nas</a></li>
+            <li><a href="#services" onclick="showSection(event, 'services')">Usługi</a></li>
+            <li><a href="#contact" onclick="showSection(event, 'about')">Kontakt</a></li>
         </ul>
     </nav>
 
@@ -705,7 +716,7 @@
         </div>
     </section>
 
-<section class="cta" id="contact">
+    <section class="cta" id="contact">
         <div class="container">
             <h2>Kontakt</h2>
             <!-- Zmieniamy sposób wyświetlania emaila -->
@@ -738,7 +749,10 @@
             menuOverlay.classList.remove('active');
         }
 
-        function showSection(sectionId) {
+        function showSection(event, sectionId) {
+            // Prevent default link behavior
+            event.preventDefault();
+            
             // Hide all sections
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
@@ -794,7 +808,6 @@
 
         // Wywołujemy funkcję po załadowaniu DOM
         document.addEventListener('DOMContentLoaded', protectEmail);
-        
     </script>
 </body>
 </html>
